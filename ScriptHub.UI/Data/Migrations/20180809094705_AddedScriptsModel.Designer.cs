@@ -11,9 +11,10 @@ using System;
 namespace ScriptHub.UI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180809094705_AddedScriptsModel")]
+    partial class AddedScriptsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,7 +252,7 @@ namespace ScriptHub.UI.Data.Migrations
             modelBuilder.Entity("ScriptHub.UI.Data.Script", b =>
                 {
                     b.HasOne("ScriptHub.UI.Data.ApplicationUser", "Owner")
-                        .WithMany("OwnedScripts")
+                        .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
