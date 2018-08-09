@@ -22,5 +22,8 @@ namespace ScriptHub.UI.Data {
 
 		[Required]
 		public string Code { get; set; }
+
+		[Required]
+		public bool IsPrivate { get; set; }
 	}
 }
