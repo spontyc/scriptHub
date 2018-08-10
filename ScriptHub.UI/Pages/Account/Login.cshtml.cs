@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ScriptHub.UI.Data;
 
-namespace ScriptHub.UI.Pages.Account
+namespace ScriptHub.UI.Views.Account
 {
     public class LoginModel : PageModel
     {

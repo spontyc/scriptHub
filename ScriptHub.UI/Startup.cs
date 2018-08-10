@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ScriptHub.Core;
 using ScriptHub.UI.Data;
 using ScriptHub.UI.Services;
 
@@ -28,9 +29,12 @@ namespace ScriptHub.UI {
 				options.Conventions.AuthorizePage("/Account/Logout");
 			});
 
+
+
 			// Register no-op EmailSender used by account confirmation and password reset during development
 			// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
 			services.AddSingleton<IEmailSender, EmailSender>();
+			services.AddScoped<IScriptCompiler, ScriptCompiler>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

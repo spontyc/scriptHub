@@ -1,0 +1,13 @@
+﻿@using ScriptHub.UI.Data
+@model List<ScriptHub.UI.Data.Script>
+@{
+    ViewData["Title"] = "Scripts";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Scripts</h2>
+<ul>
+@foreach (var script in Model) {
+    <li>@script.Name</li>
+}
+</ul>

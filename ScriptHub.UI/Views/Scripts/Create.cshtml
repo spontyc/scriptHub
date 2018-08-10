@@ -1,0 +1,58 @@
+﻿@model ScriptHub.UI.ViewModels.CreateScriptViewModel
+
+@{
+    ViewBag.Title = "Create a Script";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Create a new Script</h2>
+<form asp-controller="Scripts" asp-action="Create" method="post">
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(s => s.Code, new { @id = "hidden_editor" })
+    <div class="form-group">
+        @Html.LabelFor(s => s.Name)
+        @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Code)
+        @Html.TextAreaFor(s => s.Code, new { @class = "form-control", id = "editor" })
+        @Html.ValidationMessageFor(s => s.Code)
+    </div>
+    <div class="form-group">
+        <div id="resultText"></div>
+    </div>
+
+    <button type="button" id="TestButton" class="btn btn-success">Test</button>
+    <button type="submit" class="btn btn-default">Save</button>
+</form>
+
+@section scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/mode-csharp.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        editor.session.setMode("ace/mode/csharp");
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: false,
+            minLines: 30,
+            maxLines: 50
+        });
+
+        $("form").submit(function () {
+            $("#hidden_editor").val(editor.getSession().getValue());
+        });
+
+        $('#TestButton').click(function (e) {
+            e.preventDefault();
+            $.post("/api/Execute", { code: editor.getSession().getValue()}, function (data) {
+
+                $('#resultText').text(data);
+            });           
+        });
+    </script>
+}

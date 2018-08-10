@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ScriptHub.UI.Data {
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
+
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
 				public DbSet<Script> ScriptModels { get; set; }

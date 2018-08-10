@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ScriptHub.UI.Data;
 
-namespace ScriptHub.UI.Pages.Account.Manage
+namespace ScriptHub.UI.Views.Account.Manage
 {
     public class ExternalLoginsModel : PageModel
     {
